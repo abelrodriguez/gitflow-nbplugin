@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
 OpenIDE-Module: es.abelrodriguez.nb.plugins.gitflow
+OpenIDE-Module-Install: es/abelrodriguez/nb/plugins/gitflow/Installer.class
 OpenIDE-Module-Localizing-Bundle: es/abelrodriguez/nb/plugins/gitflow/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Specification-Version: 0.1
 
