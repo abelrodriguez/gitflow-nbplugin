@@ -1,7 +1,12 @@
 package es.abelrodriguez.nb.plugins.gitflow;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import org.openide.awt.StatusLineElementProvider;
 import org.openide.util.lookup.ServiceProvider;
 
@@ -16,19 +21,39 @@ import org.openide.util.lookup.ServiceProvider;
  *
  * @author Abel Rodríguez
  */
-@ServiceProvider(service = StatusLineElementProvider.class)
+@ServiceProvider(service = StatusLineElementProvider.class, position = -5)
 public final class StatusBarElement implements StatusLineElementProvider {
     
     final static JLabel jLabel;
     
     static {
-        jLabel = new JLabel("test");
+        jLabel = new JLabel("gitflow");
         jLabel.setBorder(null);
+        jLabel.addMouseListener(new MouseAdapter() {
+            @Override
+                public void mousePressed(MouseEvent e) {
+                    if ( e.isMetaDown() ) {
+                        
+                        JPopupMenu popup;
+                        popup = new JPopupMenu();
+                        popup.add(new JMenuItem("Start New Feature"));
+                        popup.add(new JMenuItem("Start New Release"));
+                        popup.add(new JMenuItem("Start New Hotfix"));
+                        
+                        popup.show(e.getComponent(), e.getX(), -popup.getPreferredSize().height);
+                        
+                    }
+                }
+            
+        });
     }
     
     @Override
     public Component getStatusLineElement() {
-        return jLabel;
+        //return jLabel;
+        JPanel statusPanel = new JPanel();
+        statusPanel.add(jLabel);
+        return statusPanel; 
     }
 
 }
