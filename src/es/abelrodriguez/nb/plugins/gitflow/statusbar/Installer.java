@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.abelrodriguez.nb.plugins.gitflow;
+package es.abelrodriguez.nb.plugins.gitflow.statusbar;
 
 import org.openide.modules.ModuleInstall;
 
