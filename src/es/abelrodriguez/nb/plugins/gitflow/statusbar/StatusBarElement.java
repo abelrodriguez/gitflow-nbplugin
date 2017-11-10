@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import org.openide.awt.StatusLineElementProvider;
+import org.openide.filesystems.FileObject;
 import org.openide.util.lookup.ServiceProvider;
 
 /*
@@ -79,13 +80,10 @@ public final class StatusBarElement implements StatusLineElementProvider {
     
     private static void newFeature() {
         
-         
-         
-        try {
-            gitflow.Init();
-        } catch (IOException ex) {
-            Logger.getLogger(StatusBarElement.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //getGitRepoDirectory(file);
+        gitflow.Init();
     }
+    
+    
 
 }
