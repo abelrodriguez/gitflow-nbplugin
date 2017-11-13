@@ -5,10 +5,19 @@
  */
 package es.abelrodriguez.nb.plugins.gitflow.controllers;
 
+import es.abelrodriguez.nb.plugins.gitflow.constants.PrintType;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.lib.RepositoryBuilder;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 
 /**
  *
@@ -21,10 +30,30 @@ public class GitController {
     
     public void Init() {
         
+        String gitPath = "C:\\temp\\repositorio\\.git";
+        
         try {
-            //if ! git rev-parse --git-dir >/dev/null 2>&1; then
-            //console.execute(Arrays.asList("dir"));
-            console.execute(Arrays.asList("git", "rev-parse", "--git-dir"));
+            
+            
+            Repository repository = new FileRepositoryBuilder()
+                    .setGitDir(new File(gitPath))
+                    .build();
+
+
+            if (repository.getObjectDatabase().exists()) {
+                console.print("Es un repositorio");
+            } else {
+                console.print("fatal: Not a git repository", PrintType.ERROR);
+            }
+
+            repository.close();
+
+            //List<String> command =  Arrays.asList("git", "rev-parse", "--git-dir");
+            //List<String> command =  Arrays.asList("git", "-C", path, "status", ">/dev/null", "2>&1");
+            
+            
+           
+            //console.execute(command);
             
             
         } catch (IOException ex) {
