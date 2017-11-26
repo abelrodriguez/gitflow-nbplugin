@@ -1,5 +1,6 @@
 package es.abelrodriguez.nb.plugins.gitflow;
 
+import es.abelrodriguez.nb.plugins.gitflow.console.ConsoleController;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,8 +26,11 @@ import org.openide.util.lookup.ServiceProvider;
 public final class StatusBarElement implements StatusLineElementProvider {
     
     final static JLabel jLabel;
+    final static ConsoleController console = new ConsoleController();
     
     static {
+        
+        
         jLabel = new JLabel("gitflow");
         jLabel.setBorder(null);
         jLabel.addMouseListener(new MouseAdapter() {
@@ -41,6 +45,10 @@ public final class StatusBarElement implements StatusLineElementProvider {
                         popup.add(new JMenuItem("Start New Hotfix"));
                         
                         popup.show(e.getComponent(), e.getX(), -popup.getPreferredSize().height);
+                        
+                        
+                        
+                        console.print("Component initialized!");
                         
                     }
                 }
